@@ -1,0 +1,51 @@
+name:                Union
+version:             0.1.0.0
+github:              "githubuser/Union"
+license:             BSD3
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2021 Author name here"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/Union#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- containers >= 0.6.4.1 && < 6.6
+- mira >= 2.0.0 && < 2.1
+- text >= 1.2.4.1 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  Union:
+    main:                Main.hs
+    source-dirs:         src
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Union
+
+tests:
+  Union-test:
+    main:                RunTest.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Union
