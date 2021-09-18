@@ -91,12 +91,15 @@ finalA :: FA Natural -> FA Natural -> Map Natural Natural -> Set Natural
 finalA (MkFA _ _ _ final1 ) (MkFA _ _ _ final2) k 
    = Set.union (Set.difference final2 (Set.intersection final1 final2)) (droper (Set.toList (Set.intersection final1 final2)) k )
 
+changeMoves :: [Move Natural] -> Map Natural Natural -> [Natural] -> [Move Natural] 
+changeMoves [] k a = [] 
+changeMoves (x:xs) k a = [changeMove x k a]++(changeMoves xs k a)
+
 changeMove :: Move Natural -> Map Natural Natural -> [Natural] -> Move Natural 
 changeMove (Move i c f) m interceccion 
    = Move (change m i (aux i interceccion)) c (change m f (aux f interceccion)) 
 changeMove (Emove i f) m interceccion 
    = Emove (change m i (aux i interceccion)) (change m f (aux f interceccion)) 
-
 
 aux :: Natural -> [Natural] -> Bool
 aux n (x:xs) = (n==x) || (aux n xs)
